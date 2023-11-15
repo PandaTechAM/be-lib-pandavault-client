@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaVaultClient", "PandaVaultClient\PandaVaultClient.csproj", "{BC2583F3-6875-42BF-83D8-A52D10855F17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC2583F3-6875-42BF-83D8-A52D10855F17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2583F3-6875-42BF-83D8-A52D10855F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2583F3-6875-42BF-83D8-A52D10855F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2583F3-6875-42BF-83D8-A52D10855F17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
