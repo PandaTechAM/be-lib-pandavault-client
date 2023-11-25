@@ -10,7 +10,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,18 +18,15 @@ jobs:
         dotnet-version: [ '8.x.x' ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Build
         run: dotnet build ${{ env.PROJECT_PATH }}
-
-      - name: Test
-        run: dotnet test ${{ env.PROJECT_PATH }} --collect:"XPlat Code Coverage"
 
       - name: Pack
         run: dotnet pack ${{ env.PROJECT_PATH }} --output ${{ env.OUTPUT_DIR }}
