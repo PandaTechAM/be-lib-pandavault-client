@@ -13,7 +13,7 @@ applications.
 - **Configuration Refresh**: Refreshes the configuration data at a specified interval, allowing for dynamic
   configuration changes without the need to restart your application.
 - **Configuration Validation**: Validates that there are no required configurations that have been left blank. If there
-  are, the application will not start. To require some configuration to be required, add `"*"` as the value for the key.
+  are, the application will not start. To require some configuration to be required, add `"**"` as the value for the key.
 
 ## Installation
 

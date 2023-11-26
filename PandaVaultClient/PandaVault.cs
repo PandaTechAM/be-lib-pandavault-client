@@ -44,7 +44,7 @@ public class PandaVault
     private void ValidateConfigurations()
     {
         var emptyConfigs =
-            _configuration.AsEnumerable().Where(kvp => kvp.Value == "*").Select(kvp => kvp.Key).ToList();
+            _configuration.AsEnumerable().Where(kvp => kvp.Value == "**").Select(kvp => kvp.Key).ToList();
 
         if (emptyConfigs.Count == 0) return;
 
