@@ -9,13 +9,15 @@ public class PandaVault
 {
     private readonly IConfiguration _configuration;
     private readonly string _environment;
+    private readonly string _pandaVaultSecret;
 
     public PandaVault(IConfiguration configuration)
     {
         _configuration = configuration;
         _environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!;
+        _pandaVaultSecret = Environment.GetEnvironmentVariable("PANDAVAULT_SECRET")!;
     }
-
+    
     public async Task SetConfigurationsAsync()
     {
         var configurations = await HttpHelper.FetchConfigurationsAsync();
@@ -53,7 +55,7 @@ public class PandaVault
 
     public List<AllConfigurationsDto> GetAllConfigurations(string pandaVaultSecret)
     {
-        if (pandaVaultSecret != Environment.GetEnvironmentVariable("PANDAVAULT_SECRET"))
+        if (pandaVaultSecret != _pandaVaultSecret)
         {
             throw new ArgumentException("PandaVault secret is not correct");
         }
@@ -67,7 +69,7 @@ public class PandaVault
 
     public async Task<List<RefreshConfigurationsDto>> RefreshConfigurationsAsync(string pandaVaultSecret)
     {
-        if (pandaVaultSecret != Environment.GetEnvironmentVariable("PANDAVAULT_SECRET"))
+        if (pandaVaultSecret != _pandaVaultSecret)
         {
             throw new ArgumentException("PandaVault secret is not correct");
         }

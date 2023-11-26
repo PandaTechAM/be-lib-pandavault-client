@@ -35,57 +35,27 @@ Environment.SetEnvironmentVariable("PANDAVAULT_URL", "Your_PandaVault_URL");
 Environment.SetEnvironmentVariable("PANDAVAULT_SECRET", "Your_PandaVault_Secret");
 ```
 
-Then, within your program.cs register the nuget package:
-After registering on application startup, you can call `PandaVault.SetConfigurationsAsync()` to fetch and apply the
-configurations to your project:
-Additionally, you can map endpoints for  `PandaVault.GetAllConfigurations()` or `RefreshConfigurationsAsync` to retrieve
-the configurations.
+After setting the environment variables, register the PandaVaultClient service within your project's `Program.cs` file:
 
 ### Program.cs
 
 ```csharp
-using Microsoft.AspNetCore.Mvc;
 using PandaVaultClient;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterPandaVault();
-builder.Services.AddHostedService<Startup>();
+builder.Services.RegisterPandaVault(); // Registering PandaVaultClient
 
 var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.MapGet("/configurations", (PandaVault vault, [FromHeader] string secret) => vault.GetAllConfigurations(secret));
-app.MapPut("/configurations",
-    async (PandaVault vault, [FromHeader] string secret) => await vault.RefreshConfigurationsAsync(secret));
+app.RunPandaVaultClient(); // Running PandaVaultClient on startup
+app.MapPandaVaultApi(); // Mapping PandaVaultClient endpoints
 
 app.Run();
-```
-
-### Startup.cs
-
-```csharp
-
-namespace PandaVaultClient.Test;
-
-public class Startup : IHostedService
-{
-    private readonly PandaVault _vault;
-
-    public Startup(PandaVault vault)
-    {
-        _vault = vault;
-    }
-
-    public async Task StartAsync(CancellationToken cancellationToken)
-    {
-        await _vault.SetConfigurationsAsync();
-    }
-
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        return Task.CompletedTask;
-    }
-}
 ```
 
 ## License

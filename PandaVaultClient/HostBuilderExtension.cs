@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace PandaVaultClient;
 
 [SuppressMessage("Major Code Smell", "S3928:Parameter names used into ArgumentException constructors should match an existing one ")]
-public static class HostBuilderExtensions
+public static class HostBuilderExtension
 {
-    public static IServiceCollection RegisterPandaVault(this IServiceCollection services)
+    public static void RegisterPandaVault(this IServiceCollection services)
     {
         var url = Environment.GetEnvironmentVariable("PANDAVAULT_URL");
         if (string.IsNullOrEmpty(url))
@@ -22,6 +22,5 @@ public static class HostBuilderExtensions
                 "Environment variable PANDAVAULT_SECRET is not set");
         }
         services.AddSingleton<PandaVault>();
-        return services;
     }
 }
