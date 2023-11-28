@@ -5,15 +5,16 @@ using PandaVaultClient.Dtos;
 namespace PandaVaultClient;
 public static class HttpHelper
 {
+    private static readonly string Url = Environment.GetEnvironmentVariable("PANDAVAULT_URL")!;
+    private static readonly string Secret = Environment.GetEnvironmentVariable("PANDAVAULT_SECRET")!;
+    
     public static async Task<List<ConfigurationDto>> FetchConfigurationsAsync()
     {
         const string endpoint = "/api/v1/vault-configs";
-        var url = Environment.GetEnvironmentVariable("PANDAVAULT_URL");
-        var secret = Environment.GetEnvironmentVariable("PANDAVAULT_SECRET");
         using var client = new HttpClient();
 
-        client.DefaultRequestHeaders.Add("secret", secret);
-        var response = await client.GetAsync($"{url}{endpoint}");
+        client.DefaultRequestHeaders.Add("secret", Secret);
+        var response = await client.GetAsync($"{Url}{endpoint}");
         if (response.StatusCode == HttpStatusCode.BadRequest)
         {
             throw new HttpRequestException("PANDAVAULT_SECRET environment variable's value is not correct", null,
