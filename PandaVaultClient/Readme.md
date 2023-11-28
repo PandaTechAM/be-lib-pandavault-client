@@ -10,10 +10,9 @@ applications.
   authentication.
 - **Configuration Application**: Applies the fetched configuration data to your .NET projects using
   Microsoft's `Microsoft.Extensions.Configuration`.
-- **Configuration Refresh**: Refreshes the configuration data at a specified interval, allowing for dynamic
-  configuration changes without the need to restart your application.
 - **Configuration Validation**: Validates that there are no required configurations that have been left blank. If there
-  are, the application will not start. To require some configuration to be required, add `"**"` as the value for the key.
+  are, the application will not start. To require some configuration to be required, add `"**"` as the value for the
+  key.
 
 ## Installation
 
@@ -45,16 +44,27 @@ After setting the environment variables, register the PandaVaultClient service w
 using PandaVaultClient;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterPandaVault(); // Registering PandaVaultClient
+builder.Configuration.AddPandaVault(); // Adding PandaVaultConfigurationSource
 
 var app = builder.Build();
-app.UseSwagger();
-app.UseSwaggerUI();
+app.Run();
+```
 
-app.RunPandaVaultClient(); // Running PandaVaultClient on startup
+### Configuration Retrieval (optional)
+
+Additionally you can add service and endpoint for retrieving all active configurations using pandavault secret in request
+header.
+
+```csharp
+using PandaVaultClient;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddPandaVault(); // Adding PandaVaultConfigurationSource
+builder.RegisterPandaVaultEndpoint(); // optional, if you want to use the endpoint for all configurations
+
+var app = builder.Build();
+
 app.MapPandaVaultApi(); // Mapping PandaVaultClient endpoints
 
 app.Run();

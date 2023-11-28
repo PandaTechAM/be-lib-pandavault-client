@@ -9,7 +9,7 @@ public class PandaVaultConfigurationSource : IConfigurationSource
         ExistingConfiguration = existingConfiguration;
     }
 
-    IConfiguration ExistingConfiguration { get; set; }
+    private IConfiguration ExistingConfiguration { get; set; }
 
     public IConfigurationProvider Build(IConfigurationBuilder builder)
     {

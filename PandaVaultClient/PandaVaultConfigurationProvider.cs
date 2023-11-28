@@ -21,7 +21,7 @@ public class PandaVaultConfigurationProvider : ConfigurationProvider
         }
         catch (Exception ex)
         {
-            throw new InvalidOperationException("Error loading .env file", ex);
+            throw new InvalidOperationException("Error on fetching configurations", ex);
         }
 
         var requiredKeys = _existingConfiguration.AsEnumerable().Where(x => x.Value == "**");
@@ -39,4 +39,21 @@ public class PandaVaultConfigurationProvider : ConfigurationProvider
             .Where(x => _existingConfiguration[x.key] != null)
             .ToDictionary(x => x.key, x => x.value)!;
     }
+
+    public List<AllConfigurationsDto> GetAllConfigurations(string pandaVaultSecret)
+    {
+        if (pandaVaultSecret != Environment.GetEnvironmentVariable("PANDAVAULT_SECRET"))
+        {
+            throw new ArgumentException("PandaVault secret is not correct");
+        }
+        
+        var allConfigurations = _existingConfiguration.AsEnumerable().Select(conf => new AllConfigurationsDto
+        {
+            Key = conf.Key,
+            Value = conf.Value
+        }).ToList();
+        
+        return allConfigurations;
+    }
+
 }

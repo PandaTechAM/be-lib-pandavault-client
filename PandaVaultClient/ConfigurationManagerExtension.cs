@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PandaVaultClient;
 
@@ -8,5 +10,11 @@ public static class ConfigurationManagerExtension
     {
         configurationManager.Add(new PandaVaultConfigurationSource(configurationManager));
         return configurationManager;
+    }
+    
+    public static WebApplicationBuilder RegisterPandaVaultEndpoint(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddSingleton<PandaVaultConfigurationProvider>();
+        return builder;
     }
 }
