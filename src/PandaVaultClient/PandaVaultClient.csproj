@@ -4,26 +4,22 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackageId>Pandatech.PandaVaultClient</PackageId>
-        <Version>3.0.1</Version>
-        <Title>Pandatech.PandaVaultClient</Title>
-        <Authors>Pandatech</Authors>
         <PackageIcon>pandatech.png</PackageIcon>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
+        <Authors>Pandatech</Authors>
+        <Copyright>MIT</Copyright>
+        <Version>3.0.2</Version>
+        <PackageId>Pandatech.PandaVaultClient</PackageId>
+        <PackageTags>Pandatech, library, pandavault, security, configurations</PackageTags>
+        <Title>Pandatech.PandaVaultClient</Title>
         <Description>Pandatech.PandaVaultClient is a .NET library helping to retrieve configurations from PandaVault.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-pandavault-client</RepositoryUrl>
-        <PackageReleaseNotes>Changing required syntax</PackageReleaseNotes>
+        <PackageReleaseNotes>Structure change</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="pandatech.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
-        <None Update="Readme.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
+        <None Include="..\..\pandatech.png" Pack="true" PackagePath="\"/>
+        <None Include="..\..\Readme.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
     
     <ItemGroup>
@@ -31,16 +27,10 @@
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="9.12.0.78982">
+      <PackageReference Include="SonarAnalyzer.CSharp" Version="9.14.0.81108">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-    </ItemGroup>
-    
-    <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore">
-        <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.0\Microsoft.AspNetCore.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>
