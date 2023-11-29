@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaVaultClient", "PandaVaultClient\PandaVaultClient.csproj", "{BC2583F3-6875-42BF-83D8-A52D10855F17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaVaultClient", "src/PandaVaultClient\PandaVaultClient.csproj", "{BC2583F3-6875-42BF-83D8-A52D10855F17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaVaultClient.Test", "../tests/PandaVaultClient.Test\PandaVaultClient.Test.csproj", "{35FB2299-B91D-414A-98A1-58F44D491B10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaVaultClient.Test", "src/PandaVaultClient.Test\PandaVaultClient.Test.csproj", "{35FB2299-B91D-414A-98A1-58F44D491B10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
