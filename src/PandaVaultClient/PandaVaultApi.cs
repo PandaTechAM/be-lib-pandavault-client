@@ -12,4 +12,11 @@ public static class PandaVaultApi
         vault.GetAllConfigurations(secret)).WithTags("Above Board");
         return app;
     }
+    
+    public static WebApplication MapPandaVaultApi(this WebApplication app, string groupName)
+    {
+        app.MapGet("/configurations", ([FromServices] PandaVaultConfigurationProvider vault, [FromHeader] string secret) =>
+        vault.GetAllConfigurations(secret)).WithTags("Above Board").WithGroupName(groupName);
+        return app;
+    }
 }

@@ -9,7 +9,7 @@
       "applicationUrl": "http://localhost:5149",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "PANDAVAULT_URL": "https://bepandavault.pandatech.it",
+        "PANDAVAULT_URL": "https://bevault.pandatech.it",
         "PANDAVAULT_SECRET": "0c579832-968e-463e-a69e-f9634332d29e"
       }
     }
