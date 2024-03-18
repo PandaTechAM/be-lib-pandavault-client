@@ -17,6 +17,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapPandaVaultApi(); // Mapping PandaVaultClient endpoints
+app.MapPandaVaultApi("/configuration"); // Mapping PandaVaultClient endpoints
 app.MapControllers();
 app.Run();

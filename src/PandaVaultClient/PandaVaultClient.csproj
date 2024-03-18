@@ -8,13 +8,13 @@
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Authors>Pandatech</Authors>
         <Copyright>MIT</Copyright>
-        <Version>3.0.6</Version>
+        <Version>3.1.0</Version>
         <PackageId>Pandatech.PandaVaultClient</PackageId>
         <PackageTags>Pandatech, library, pandavault, security, configurations</PackageTags>
         <Title>Pandatech.PandaVaultClient</Title>
         <Description>Pandatech.PandaVaultClient is a .NET library helping to retrieve configurations from PandaVault.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-pandavault-client</RepositoryUrl>
-        <PackageReleaseNotes>Minor change with api</PackageReleaseNotes>
+        <PackageReleaseNotes>All configuration endpoint requires path</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
