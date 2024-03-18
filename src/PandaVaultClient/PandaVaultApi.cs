@@ -7,29 +7,28 @@ namespace PandaVaultClient;
 
 public static class PandaVaultApi
 {
-    public static WebApplication MapPandaVaultApi(this WebApplication app)
+    public static WebApplication MapPandaVaultApi(this WebApplication app, string path)
     {
-        app.MapGet("/above-board/configurations", ([FromServices] PandaVaultConfigurationProvider vault, [FromHeader] string secret) =>
-        vault.GetAllConfigurations(secret))
-        .Produces<List<AllConfigurationsDto>>();
+        app.MapGet(path, ([FromServices] PandaVaultConfigurationProvider vault, [FromHeader] string secret) =>
+            vault.GetAllConfigurations(secret))
+            .Produces<List<AllConfigurationsDto>>();
         return app;
     }
-    
-    public static WebApplication MapPandaVaultApi(this WebApplication app, string tagName)
+
+    public static WebApplication MapPandaVaultApi(this WebApplication app, string path, string tagName)
     {
-        app.MapGet("/configurations",
-            ([FromServices] PandaVaultConfigurationProvider vault, [FromHeader] string secret) =>
-                vault.GetAllConfigurations(secret))
+        app.MapGet(path, ([FromServices] PandaVaultConfigurationProvider vault, [FromHeader] string secret) =>
+            vault.GetAllConfigurations(secret))
             .Produces<List<AllConfigurationsDto>>()
             .WithTags(tagName);
         return app;
     }
-    
-    public static WebApplication MapPandaVaultApi(this WebApplication app, string tagName, string groupName)
+
+    public static WebApplication MapPandaVaultApi(this WebApplication app, string path, string tagName, string groupName)
     {
-        app.MapGet("/configurations",
-            ([FromServices] PandaVaultConfigurationProvider vault, [FromHeader] string secret) =>
-                vault.GetAllConfigurations(secret))
+        app.MapGet(path,
+                ([FromServices] PandaVaultConfigurationProvider vault, [FromHeader] string secret) =>
+                    vault.GetAllConfigurations(secret))
             .Produces<List<AllConfigurationsDto>>()
             .WithTags(tagName)
             .WithGroupName(groupName);

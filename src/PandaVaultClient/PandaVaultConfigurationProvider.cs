@@ -3,15 +3,8 @@ using PandaVaultClient.Dtos;
 
 namespace PandaVaultClient;
 
-public class PandaVaultConfigurationProvider : ConfigurationProvider
+public class PandaVaultConfigurationProvider(IConfiguration existingConfiguration) : ConfigurationProvider
 {
-    private readonly IConfiguration _existingConfiguration;
-
-    public PandaVaultConfigurationProvider(IConfiguration existingConfiguration)
-    {
-        _existingConfiguration = existingConfiguration;
-    }
-
     public override void Load()
     {
         List<ConfigurationDto> lines;
@@ -24,7 +17,7 @@ public class PandaVaultConfigurationProvider : ConfigurationProvider
             throw new InvalidOperationException("Error on fetching configurations", ex);
         }
 
-        var requiredKeys = _existingConfiguration.AsEnumerable().Where(x => x.Value == "**");
+        var requiredKeys = existingConfiguration.AsEnumerable().Where(x => x.Value == "**");
 
         var missingKeys = requiredKeys.Where(x => lines.TrueForAll(y => y.key != x.Key))
             .Select(x => x.Key).ToList();
@@ -36,7 +29,7 @@ public class PandaVaultConfigurationProvider : ConfigurationProvider
         }
 
         Data = lines
-            .Where(x => _existingConfiguration[x.key] != null)
+            .Where(x => existingConfiguration[x.key] != null)
             .ToDictionary(x => x.key, x => x.value)!;
     }
 
@@ -46,14 +39,13 @@ public class PandaVaultConfigurationProvider : ConfigurationProvider
         {
             throw new ArgumentException("PandaVault secret is not correct");
         }
-        
-        var allConfigurations = _existingConfiguration.AsEnumerable().Select(conf => new AllConfigurationsDto
+
+        var allConfigurations = existingConfiguration.AsEnumerable().Select(conf => new AllConfigurationsDto
         {
             Key = conf.Key,
             Value = conf.Value
         }).ToList();
-        
+
         return allConfigurations;
     }
-
 }
