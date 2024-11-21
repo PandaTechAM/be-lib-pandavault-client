@@ -1,36 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageIcon>pandatech.png</PackageIcon>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Authors>Pandatech</Authors>
         <Copyright>MIT</Copyright>
-        <Version>3.1.0</Version>
+        <Version>4.0.0</Version>
         <PackageId>Pandatech.PandaVaultClient</PackageId>
         <PackageTags>Pandatech, library, pandavault, security, configurations</PackageTags>
         <Title>Pandatech.PandaVaultClient</Title>
         <Description>Pandatech.PandaVaultClient is a .NET library helping to retrieve configurations from PandaVault.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-pandavault-client</RepositoryUrl>
-        <PackageReleaseNotes>All configuration endpoint requires path</PackageReleaseNotes>
+        <PackageReleaseNotes>Upgrade to .net 9</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="..\..\pandatech.png" Pack="true" PackagePath="\"/>
         <None Include="..\..\Readme.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="9.14.0.81108">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
     </ItemGroup>
 
 </Project>
