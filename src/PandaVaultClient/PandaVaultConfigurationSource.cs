@@ -2,17 +2,12 @@
 
 namespace PandaVaultClient;
 
-public class PandaVaultConfigurationSource : IConfigurationSource
+public class PandaVaultConfigurationSource(IConfiguration existingConfiguration) : IConfigurationSource
 {
-    public PandaVaultConfigurationSource(IConfiguration existingConfiguration)
-    {
-        ExistingConfiguration = existingConfiguration;
-    }
+   private IConfiguration ExistingConfiguration { get; } = existingConfiguration;
 
-    private IConfiguration ExistingConfiguration { get; set; }
-
-    public IConfigurationProvider Build(IConfigurationBuilder builder)
-    {
-        return new PandaVaultConfigurationProvider(ExistingConfiguration);
-    }
+   public IConfigurationProvider Build(IConfigurationBuilder builder)
+   {
+      return new PandaVaultConfigurationProvider(ExistingConfiguration);
+   }
 }

@@ -51,25 +51,6 @@ var app = builder.Build();
 app.Run();
 ```
 
-### Configuration Retrieval (optional)
-
-Additionally you can add service and endpoint for retrieving all active configurations using pandavault secret in request
-header.
-
-```csharp
-using PandaVaultClient;
-
-var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddPandaVault(); // Adding PandaVaultConfigurationSource
-builder.RegisterPandaVaultEndpoint(); // optional, if you want to use the endpoint for all configurations
-
-var app = builder.Build();
-
-app.MapPandaVaultApi(); // Mapping PandaVaultClient endpoints
-
-app.Run();
-```
-
 ## License
 
 Pandatech.PandaVaultClient is licensed under the MIT License.
