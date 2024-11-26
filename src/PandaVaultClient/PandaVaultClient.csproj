@@ -24,6 +24,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+        <PackageReference Include="Pandatech.ResponseCrafter" Version="5.0.2" />
     </ItemGroup>
 
 </Project>
