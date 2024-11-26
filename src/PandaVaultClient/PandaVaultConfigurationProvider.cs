@@ -7,16 +7,8 @@ public class PandaVaultConfigurationProvider(IConfiguration existingConfiguratio
 {
    public override void Load()
    {
-      List<ConfigurationDto> lines;
-      try
-      {
-         lines = HttpHelper.FetchConfigurationsAsync()
+      var lines = HttpHelper.FetchConfigurationsAsync()
                            .Result;
-      }
-      catch (Exception ex)
-      {
-         throw new InvalidOperationException("Error on fetching configurations", ex);
-      }
 
       var requiredKeys = existingConfiguration.AsEnumerable()
                                               .Where(x => x.Value == "**");
