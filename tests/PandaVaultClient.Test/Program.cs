@@ -1,10 +1,11 @@
 using PandaVaultClient;
+using PandaVaultClient.Extensions;
 using PandaVaultClient.Test;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Configuration.AddPandaVault(); // Adding PandaVaultConfigurationSource
+builder.AddPandaVault();
 
 builder.Services.AddEndpointsApiExplorer();
 

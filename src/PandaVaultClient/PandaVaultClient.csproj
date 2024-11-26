@@ -8,13 +8,13 @@
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Authors>Pandatech</Authors>
         <Copyright>MIT</Copyright>
-        <Version>4.0.2</Version>
+        <Version>4.0.3</Version>
         <PackageId>Pandatech.PandaVaultClient</PackageId>
         <PackageTags>Pandatech, library, pandavault, security, configurations</PackageTags>
         <Title>Pandatech.PandaVaultClient</Title>
         <Description>Pandatech.PandaVaultClient is a .NET library helping to retrieve configurations from PandaVault.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-pandavault-client</RepositoryUrl>
-        <PackageReleaseNotes>fixing error messages to response crafter</PackageReleaseNotes>
+        <PackageReleaseNotes>Implementation change</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>

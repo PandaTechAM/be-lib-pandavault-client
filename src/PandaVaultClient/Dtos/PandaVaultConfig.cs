@@ -2,11 +2,11 @@
 
 namespace PandaVaultClient.Dtos;
 
-public class ConfigurationDto
+public class PandaVaultConfig
 {
    [JsonPropertyName("key")]
-   public string Key { get; set; } = null!;
-   
+   public required string Key { get; set; }
+
    [JsonPropertyName("value")]
-   public string Value { get; set; } = null!;
+   public required string Value { get; set; }
 }
