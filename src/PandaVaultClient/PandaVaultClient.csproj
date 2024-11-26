@@ -8,13 +8,13 @@
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Authors>Pandatech</Authors>
         <Copyright>MIT</Copyright>
-        <Version>4.0.0</Version>
+        <Version>4.0.1</Version>
         <PackageId>Pandatech.PandaVaultClient</PackageId>
         <PackageTags>Pandatech, library, pandavault, security, configurations</PackageTags>
         <Title>Pandatech.PandaVaultClient</Title>
         <Description>Pandatech.PandaVaultClient is a .NET library helping to retrieve configurations from PandaVault.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-pandavault-client</RepositoryUrl>
-        <PackageReleaseNotes>Upgrade to .net 9</PackageReleaseNotes>
+        <PackageReleaseNotes>fixing error messages to response crafter</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,6 +24,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+        <PackageReference Include="Pandatech.ResponseCrafter" Version="5.0.2" />
     </ItemGroup>
 
 </Project>

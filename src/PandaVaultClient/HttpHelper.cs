@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 using PandaVaultClient.Dtos;
+using ResponseCrafter.HttpExceptions;
 
 namespace PandaVaultClient;
 
@@ -13,21 +14,26 @@ public static class HttpHelper
    {
       const string endpoint = "/api/v1/vault-configs";
       using var client = new HttpClient();
+      
+      if (Url is null)
+      {
+         throw new ArgumentNullException($"PANDAVAULT_URL environment variable is not set");
+      }
+      if (Secret is null)
+      {
+         throw new ArgumentNullException($"PANDAVAULT_SECRET environment variable is not set");
+      }
 
       client.DefaultRequestHeaders.Add("secret", Secret);
       var response = await client.GetAsync($"{Url}{endpoint}");
       if (response.StatusCode == HttpStatusCode.BadRequest)
       {
-         throw new HttpRequestException("PANDAVAULT_SECRET environment variable's value is not correct",
-            null,
-            response.StatusCode);
+         throw new BadRequestException("PANDAVAULT_SECRET environment variable's value is not correct");
       }
 
       if (!response.IsSuccessStatusCode)
       {
-         throw new HttpRequestException("Failed to retrieve configuration data from the HTTP endpoint.",
-            null,
-            response.StatusCode);
+         throw new BadRequestException("Failed to fetch configuration from PandaVault. Please check the client settings and network connectivity.");
       }
 
       return (await response.Content.ReadFromJsonAsync<List<ConfigurationDto>>())!;
