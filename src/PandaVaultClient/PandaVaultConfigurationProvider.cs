@@ -7,21 +7,13 @@ public class PandaVaultConfigurationProvider(IConfiguration existingConfiguratio
 {
    public override void Load()
    {
-      List<ConfigurationDto> lines;
-      try
-      {
-         lines = HttpHelper.FetchConfigurationsAsync()
+      var lines = HttpHelper.FetchConfigurationsAsync()
                            .Result;
-      }
-      catch (Exception ex)
-      {
-         throw new InvalidOperationException("Error on fetching configurations", ex);
-      }
 
       var requiredKeys = existingConfiguration.AsEnumerable()
                                               .Where(x => x.Value == "**");
 
-      var missingKeys = requiredKeys.Where(x => lines.TrueForAll(y => y.key != x.Key))
+      var missingKeys = requiredKeys.Where(x => lines.TrueForAll(y => y.Key != x.Key))
                                     .Select(x => x.Key)
                                     .ToList();
 
@@ -32,25 +24,7 @@ public class PandaVaultConfigurationProvider(IConfiguration existingConfiguratio
       }
 
       Data = lines
-             .Where(x => existingConfiguration[x.key] != null)
-             .ToDictionary(x => x.key, x => x.value)!;
-   }
-
-   public List<AllConfigurationsDto> GetAllConfigurations(string pandaVaultSecret)
-   {
-      if (pandaVaultSecret != Environment.GetEnvironmentVariable("PANDAVAULT_SECRET"))
-      {
-         throw new ArgumentException("PandaVault secret is not correct");
-      }
-
-      var allConfigurations = existingConfiguration.AsEnumerable()
-                                                   .Select(conf => new AllConfigurationsDto
-                                                   {
-                                                      Key = conf.Key,
-                                                      Value = conf.Value
-                                                   })
-                                                   .ToList();
-
-      return allConfigurations;
+             .Where(x => existingConfiguration[x.Key] != null)
+             .ToDictionary(x => x.Key, x => x.Value)!;
    }
 }

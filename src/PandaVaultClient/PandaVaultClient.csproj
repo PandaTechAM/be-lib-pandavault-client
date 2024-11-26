@@ -8,7 +8,7 @@
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Authors>Pandatech</Authors>
         <Copyright>MIT</Copyright>
-        <Version>4.0.1</Version>
+        <Version>4.0.2</Version>
         <PackageId>Pandatech.PandaVaultClient</PackageId>
         <PackageTags>Pandatech, library, pandavault, security, configurations</PackageTags>
         <Title>Pandatech.PandaVaultClient</Title>
@@ -24,7 +24,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-        <PackageReference Include="Pandatech.ResponseCrafter" Version="5.0.2" />
+        <PackageReference Include="Pandatech.RegexBox" Version="3.0.0" />
     </ItemGroup>
 
 </Project>

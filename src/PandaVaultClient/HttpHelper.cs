@@ -1,7 +1,6 @@
-using System.Net;
 using System.Net.Http.Json;
 using PandaVaultClient.Dtos;
-using ResponseCrafter.HttpExceptions;
+using RegexBox;
 
 namespace PandaVaultClient;
 
@@ -14,26 +13,31 @@ public static class HttpHelper
    {
       const string endpoint = "/api/v1/vault-configs";
       using var client = new HttpClient();
+      var validUrl = PandaValidator.IsUri(Url, false);
       
-      if (Url is null)
+      if (!validUrl)
       {
-         throw new ArgumentNullException($"PANDAVAULT_URL environment variable is not set");
+         throw new ArgumentNullException($"PANDAVAULT_URL is not valid. Url: {Url}");
       }
-      if (Secret is null)
+      if (string.IsNullOrWhiteSpace(Secret))
       {
-         throw new ArgumentNullException($"PANDAVAULT_SECRET environment variable is not set");
+         throw new ArgumentNullException("PANDAVAULT_SECRET environment variable is not set");
       }
 
       client.DefaultRequestHeaders.Add("secret", Secret);
+      
       var response = await client.GetAsync($"{Url}{endpoint}");
-      if (response.StatusCode == HttpStatusCode.BadRequest)
+    
+      List<ConfigurationDto> configurations = new();
+      
+      if (response.IsSuccessStatusCode)
       {
-         throw new BadRequestException("PANDAVAULT_SECRET environment variable's value is not correct");
-      }
-
-      if (!response.IsSuccessStatusCode)
-      {
-         throw new BadRequestException("Failed to fetch configuration from PandaVault. Please check the client settings and network connectivity.");
+         configurations = (await response.Content.ReadFromJsonAsync<List<ConfigurationDto>>())!;
+         
+         if (configurations.Count == 0)
+         {
+            
+         }
       }
 
       return (await response.Content.ReadFromJsonAsync<List<ConfigurationDto>>())!;
