@@ -1,10 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Text.Json.Serialization;
 
 namespace PandaVaultClient.Dtos;
 
-[SuppressMessage("ReSharper", "InconsistentNaming")]
 public class ConfigurationDto
 {
-   public string key { get; set; } = null!;
-   public string value { get; set; } = null!;
+   [JsonPropertyName("key")]
+   public string Key { get; set; } = null!;
+   
+   [JsonPropertyName("value")]
+   public string Value { get; set; } = null!;
 }
