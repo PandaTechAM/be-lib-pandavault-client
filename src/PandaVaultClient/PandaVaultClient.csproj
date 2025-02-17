@@ -8,13 +8,13 @@
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Authors>Pandatech</Authors>
         <Copyright>MIT</Copyright>
-        <Version>4.0.3</Version>
+        <Version>4.0.4</Version>
         <PackageId>Pandatech.PandaVaultClient</PackageId>
         <PackageTags>Pandatech, library, pandavault, security, configurations</PackageTags>
         <Title>Pandatech.PandaVaultClient</Title>
         <Description>Pandatech.PandaVaultClient is a .NET library helping to retrieve configurations from PandaVault.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-pandavault-client</RepositoryUrl>
-        <PackageReleaseNotes>Implementation change</PackageReleaseNotes>
+        <PackageReleaseNotes>Nuget updates</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,8 +23,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-        <PackageReference Include="Pandatech.RegexBox" Version="3.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
+        <PackageReference Include="Pandatech.RegexBox" Version="3.0.1" />
     </ItemGroup>
 
 </Project>
