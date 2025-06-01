@@ -1,7 +1,5 @@
 using System.Net.Http.Json;
-using Microsoft.Extensions.Logging;
 using PandaVaultClient.Dtos;
-using RegexBox;
 
 namespace PandaVaultClient;
 
@@ -49,7 +47,7 @@ public static class PandaVaultHttpClient
 
    private static void ValidateUrlAndSecret(string url, string secret)
    {
-      var validUrl = PandaValidator.IsUri(url, false);
+      var validUrl = IsUri(url, false);
 
       if (!validUrl)
       {
@@ -60,5 +58,23 @@ public static class PandaVaultHttpClient
       {
          throw new ArgumentNullException("PANDAVAULT_SECRET environment variable is not set");
       }
+   }
+   
+   private static bool IsUri(string uri, bool allowNonSecure = true)
+
+   {
+      Uri.TryCreate(uri, UriKind.Absolute, out var parsedUri);
+
+      if (parsedUri is null)
+      {
+         return false;
+      }
+
+      if (!allowNonSecure && parsedUri.Scheme == Uri.UriSchemeHttp)
+      {
+         return false;
+      }
+
+      return true;
    }
 }
