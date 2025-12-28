@@ -1,4 +1,3 @@
-using PandaVaultClient;
 using PandaVaultClient.Extensions;
 using PandaVaultClient.Test;
 

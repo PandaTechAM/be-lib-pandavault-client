@@ -2,14 +2,14 @@
 
 public class Test
 {
-    private readonly IConfiguration _configuration;
+   private readonly IConfiguration _configuration;
 
-    public Test(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-    public void Something()
-    {
+   public Test(IConfiguration configuration)
+   {
+      _configuration = configuration;
+   }
 
-    }
+   public void Something()
+   {
+   }
 }

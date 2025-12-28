@@ -59,7 +59,7 @@ public static class PandaVaultHttpClient
          throw new ArgumentNullException("PANDAVAULT_SECRET environment variable is not set");
       }
    }
-   
+
    private static bool IsUri(string uri, bool allowNonSecure = true)
 
    {
