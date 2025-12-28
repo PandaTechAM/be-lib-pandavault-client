@@ -15,7 +15,7 @@ internal static class ConfigurationExtensions
 
       configuration.EnsureComplete();
    }
-   
+
    private static void EnsureComplete(this IConfiguration configuration)
    {
       foreach (var kvp in configuration.AsEnumerable())
