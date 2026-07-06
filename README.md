@@ -1,6 +1,7 @@
 # Pandatech.PandaVaultClient
 
-Secure configuration retrieval client for PandaVault service integration in .NET 8+ applications with automatic configuration injection and validation.
+Secure configuration retrieval client for PandaVault service integration in .NET 8+ applications with automatic
+configuration injection and validation.
 
 ## Installation
 
@@ -18,6 +19,7 @@ export PANDAVAULT_SECRET="your-vault-secret"
 ```
 
 Or in `appsettings.json` (not recommended for secrets):
+
 ```json
 {
   "PANDAVAULT_URL": "https://vault.yourcompany.com",
@@ -42,11 +44,13 @@ app.Run();
 ### 3. Use Configurations
 
 **Direct access:**
+
 ```csharp
 var rabbitMqHost = builder.Configuration["RabbitMQSettings:HostName"];
 ```
 
 **Strongly-typed options:**
+
 ```csharp
 public class RabbitMQSettings
 {
@@ -62,7 +66,7 @@ builder.Services.Configure<RabbitMQSettings>(
 public class MyService
 {
     private readonly RabbitMQSettings _settings;
-    
+
     public MyService(IOptions<RabbitMQSettings> options)
     {
         _settings = options.Value;
@@ -72,10 +76,10 @@ public class MyService
 
 ## Features
 
-✅ **Automatic configuration retrieval** - Fetches configs from PandaVault on startup  
-✅ **Environment variable authentication** - Secure secret management  
-✅ **Configuration validation** - Ensures required configs are set  
-✅ **IConfiguration integration** - Works with Microsoft.Extensions.Configuration  
+✅ **Automatic configuration retrieval** - Fetches configs from PandaVault on startup
+✅ **Environment variable authentication** - Secure secret management
+✅ **Configuration validation** - Ensures required configs are set
+✅ **IConfiguration integration** - Works with Microsoft.Extensions.Configuration
 ✅ **Startup failure on missing configs** - Prevents runtime errors
 
 ## Required Configuration Validation
@@ -122,21 +126,25 @@ Response:
 ## Error Handling
 
 **Missing environment variables:**
+
 ```
 ArgumentNullException: PANDAVAULT_URL environment variable is not set
 ```
 
 **Invalid URL:**
+
 ```
 ArgumentNullException: PANDAVAULT_URL is not valid. Url: {url}
 ```
 
 **HTTP errors:**
+
 ```
 HttpRequestException: Failed to fetch configurations. Status Code: 401
 ```
 
 **Wrong secret:**
+
 ```
 Console: The secret is wrong or there is no configurations set
 Returns: Empty list (application continues with local config)
@@ -144,9 +152,9 @@ Returns: Empty list (application continues with local config)
 
 ## Security Considerations
 
-⚠️ **Do not hardcode secrets** - Always use environment variables  
-⚠️ **Use HTTPS** - PandaVault URL should use https:// (http:// is allowed but not recommended)  
-⚠️ **Rotate secrets regularly** - Update PANDAVAULT_SECRET periodically  
+⚠️ **Do not hardcode secrets** - Always use environment variables
+⚠️ **Use HTTPS** - PandaVault URL should use https:// (http:// is allowed but not recommended)
+⚠️ **Rotate secrets regularly** - Update PANDAVAULT_SECRET periodically
 ⚠️ **Validate configurations** - Use the `"**"` pattern for critical configs
 
 ## Advanced Usage
@@ -187,13 +195,13 @@ foreach (var config in vaultConfigs)
 
 ## Troubleshooting
 
-**Issue:** Application starts but configurations are not applied  
+**Issue:** Application starts but configurations are not applied
 **Solution:** Ensure `AddPandaVault()` is called before accessing configurations
 
-**Issue:** `The secret is wrong or there is no configurations set`  
+**Issue:** `The secret is wrong or there is no configurations set`
 **Solution:** Verify PANDAVAULT_SECRET matches the vault's expected secret
 
-**Issue:** `Configuration key 'X' is not configured in the PandaVault`  
+**Issue:** `Configuration key 'X' is not configured in the PandaVault`
 **Solution:** Either add the config to PandaVault or remove the `"**"` placeholder
 
 ## License
